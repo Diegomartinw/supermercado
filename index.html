@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado</title>
+</head>
+<body> 
+    <h1>Supermercado</h1>
+
+    <div id="lacteos">
+        <fieldset>
+            <legend>Lácteos - Aprovechá nuestro 50% de descuento</legend>
+
+    <div>
+        <input type="checkbox" id="chk_1" value="120" onclick="actualizarValor(this.checked, this.value);" /> <span>Leche - $120</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_2" value="150" onclick="actualizarValor(this.checked, this.value);" /> <span>Manteca - $150</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_3" value="190" onclick="actualizarValor(this.checked, this.value);" /> <span>Dulce de leche - $190</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_4" value="230" onclick="actualizarValor(this.checked, this.value);" /> <span>Crema de leche - $ 230</span>
+      </div>
+      
+      <div>
+        <i>Subtotal con descuento del 50% : $</i><input type="text" readonly id="txtValor" value="0" />
+      </div>
+      </fieldset>
+      </div>
+
+      <div id="carnes">
+        <fieldset>
+            <legend>Carnes - Sólo por hoy 25 % de ahorro</legend>
+
+    <div>
+        <input type="checkbox" id="chk_5" value="1500" onclick="actualizarValor1(this.checked, this.value);" /> <span>Bife de chorizo - $ 1500</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_6" value="850" onclick="actualizarValor1(this.checked, this.value);" /> <span>Pollo - $850</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_7" value="1000" onclick="actualizarValor1(this.checked, this.value);" /> <span>Tira de asado - $ 1000</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_8" value="1200" onclick="actualizarValor1(this.checked, this.value);" /> <span>Vacío - $1200</span>
+      </div>
+      
+      <div>
+        <i>Subtotal con descuento del 25% : $</i><input type="text" readonly id="txtValor1" value="0" />
+      </div>
+      </fieldset>
+      </div>
+
+      <div id="lata">
+        <fieldset>
+            <legend>Enlatados - Sólo por hoy 75 % de ahorro</legend>
+
+    <div>
+        <input type="checkbox" id="chk_9" value="170" onclick="actualizarValor2(this.checked, this.value);" /> <span>Atún - $ 170</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_10" value="100" onclick="actualizarValor2(this.checked, this.value);" /> <span>Arvejas - $100</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_11" value="130" onclick="actualizarValor2(this.checked, this.value);" /> <span>Granos de choclo - $130</span>
+      </div>
+      <div>
+        <input type="checkbox" id="chk_12" value="425" onclick="actualizarValor2(this.checked, this.value);" /> <span>Sardinas - $425</span>
+      </div>
+      
+      <div>
+        <i>Subtotal con descuento del 75% : $</i><input type="text" readonly id="txtValor2" value="0" />
+      </div>
+      </fieldset>
+      </div>
+
+      <input type="button" value="Total" onclick="sumatotal()">
+      <input type="text" name="" id="totalfinal">
+
+      <script>
+
+var campo_resultado = document.getElementById('txtValor');
+        
+        function actualizarValor(estaChequeado, valor) {
+
+// Variables.
+var suma_actual = 0;
+
+valor = parseInt(valor);
+
+// Obtener la suma que pueda tener el campo 'txtValor'.
+try {
+  if (campo_resultado != null) {
+
+    if (isNaN(campo_resultado.value)) {
+      campo_resultado.value = 0;
+    }
+
+    suma_actual = parseInt(campo_resultado.value);
+  }
+} catch (ex) {
+  alert('No existe el campo de la suma.');
+}
+
+// Determinar que: si el check está seleccionado "checked"
+// entonces, agregue el valor a la variable "suma_actual";
+// de lo contrario, le resta el valor del check a "suma_actual".
+if (estaChequeado == true) {
+  suma_actual = suma_actual + valor/2;
+} else {
+  suma_actual = suma_actual - valor/2;
+}
+
+// Colocar el resultado de las operaciones anteriores de vuelta
+// al campo "txtValor".
+campo_resultado.value = suma_actual;
+}
+
+var campo_resultado1 = document.getElementById('txtValor1');
+
+function actualizarValor1(estaChequeado, valor) {
+
+// Variables.
+var suma_actual = 0;
+
+valor = parseInt(valor);
+
+// Obtener la suma que pueda tener el campo 'txtValor'.
+try {
+  if (campo_resultado1 != null) {
+
+    if (isNaN(campo_resultado1.value)) {
+      campo_resultado1.value = 0;
+    }
+
+    suma_actual = parseInt(campo_resultado1.value);
+  }
+} catch (ex) {
+  alert('No existe el campo de la suma.');
+}
+
+// Determinar que: si el check está seleccionado "checked"
+// entonces, agregue el valor a la variable "suma_actual";
+// de lo contrario, le resta el valor del check a "suma_actual".
+if (estaChequeado == true) {
+  suma_actual = suma_actual + valor*0.75;
+} else {
+  suma_actual = suma_actual - valor*0.75;
+}
+
+// Colocar el resultado de las operaciones anteriores de vuelta
+// al campo "txtValor".
+campo_resultado1.value = suma_actual;
+}
+
+var campo_resultado2 = document.getElementById('txtValor2'); 
+
+function actualizarValor2(estaChequeado, valor) {
+
+// Variables.
+var suma_actual = 0;
+
+valor = parseInt(valor);
+
+// Obtener la suma que pueda tener el campo 'txtValor'.
+try {
+  if (campo_resultado2 != null) {
+
+    if (isNaN(campo_resultado2.value)) {
+      campo_resultado2.value = 0;
+    }
+
+    suma_actual = parseInt(campo_resultado2.value);
+  }
+} catch (ex) {
+  alert('No existe el campo de la suma.');
+}
+
+// Determinar que: si el check está seleccionado "checked"
+// entonces, agregue el valor a la variable "suma_actual";
+// de lo contrario, le resta el valor del check a "suma_actual".
+if (estaChequeado == true) {
+  suma_actual = suma_actual + valor*0.25;
+} else {
+  suma_actual = suma_actual - valor*0.25;
+}
+
+// Colocar el resultado de las operaciones anteriores de vuelta
+// al campo "txtValor".
+campo_resultado2.value = suma_actual;
+}
+
+
+
+let final= document.querySelector("#totalfinal");
+
+
+function sumatotal(){
+let resultadototal= parseFloat(campo_resultado1.value) + parseFloat(campo_resultado.value) + parseFloat(campo_resultado2.value);
+  console.log(resultadototal);
+  final.value=resultadototal;
+}
+
+
+      </script>
+
+
+    
+</body>
+</html>
